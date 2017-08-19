@@ -365,12 +365,13 @@
     options.encoderType = options.encoderType || 'image/png';
     options.encoderOptions = options.encoderOptions || 0.8;
 
-    var convertToPng = function(src, w, h) {
+    var convertToPng = function(src, w, h, options) {
       var canvas = document.createElement('canvas');
       var context = canvas.getContext('2d');
       canvas.width = w;
       canvas.height = h;
 
+      
       if(options.canvg) {
         options.canvg(canvas, src);
       } else {
@@ -406,7 +407,7 @@
         image.src = options.url;
 
         image.onload = function() {
-          convertToPng(image, image.width, image.height);
+          convertToPng(image, image.width, image.height, options);
         }
 
         image.onerror = function() {
@@ -417,7 +418,8 @@
             uri);
         }
 
-        image.src = uri;
+        //image.src = uri;
+        image.src = options.url;
       });
     }
   }
