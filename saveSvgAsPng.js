@@ -403,6 +403,7 @@
       console.log(options.url)
       out$.svgAsDataUri(el, options, function(uri) {
         var image = new Image();
+        image.src = uri;
 
         image.onload = function() {
           convertToPng(image, image.width, image.height);
