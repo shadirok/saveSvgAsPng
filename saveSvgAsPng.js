@@ -400,7 +400,7 @@
     if(options.canvg) {
       out$.prepareSvg(el, options, convertToPng);
     } else {
-      console.log("test")
+      console.log(options.url)
       out$.svgAsDataUri(el, options, function(uri) {
         var image = new Image();
 
