@@ -473,7 +473,14 @@
   }
 
   out$.saveSvgAsPng = function(el, name, options) {
-    requireDomNode(el);
+    //requireDomNode(el);
+    if(Array.isArray(el)){
+        el.forEach(function(entry) {
+        requireDomNode(entry);
+      });
+    }else{
+      requireDomNode(el);
+    }
 
     options = options || {};
     out$.svgAsPngUri(el, options, function(uri) {
