@@ -286,7 +286,7 @@ el = el[0]
     var xmlns = "http://www.w3.org/2000/xmlns/";
 
     inlineImages(el, function() {
-      el = el[0;]
+      el = el[0]
       var outer = document.createElement("div");
       var clone = el.cloneNode(true);
       var width, height;
