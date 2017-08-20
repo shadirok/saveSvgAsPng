@@ -451,8 +451,8 @@
             
           var canvas = document.createElement('canvas');
               var context = canvas.getContext('2d');
-              canvas.width = w;
-              canvas.height = h;
+              canvas.width = 200;
+              canvas.height = 200;
           
     
        Object.keys(uri).map(function(objectKey, index) {
