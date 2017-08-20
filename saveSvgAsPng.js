@@ -365,13 +365,12 @@
     options.encoderType = options.encoderType || 'image/png';
     options.encoderOptions = options.encoderOptions || 0.8;
 
-    var convertToPng = function(src, w, h, options) {
+    var convertToPng = function(src, w, h) {
       var canvas = document.createElement('canvas');
       var context = canvas.getContext('2d');
       canvas.width = w;
       canvas.height = h;
 
-      
       if(options.canvg) {
         options.canvg(canvas, src);
       } else {
@@ -401,13 +400,11 @@
     if(options.canvg) {
       out$.prepareSvg(el, options, convertToPng);
     } else {
-      console.log(options.url)
       out$.svgAsDataUri(el, options, function(uri) {
         var image = new Image();
-        image.src = options.url;
 
         image.onload = function() {
-          convertToPng(image, image.width, image.height, options);
+          convertToPng(image, image.width, image.height);
         }
 
         image.onerror = function() {
@@ -418,8 +415,7 @@
             uri);
         }
 
-        //image.src = uri;
-        image.src = options.url;
+        image.src = uri;
       });
     }
   }
