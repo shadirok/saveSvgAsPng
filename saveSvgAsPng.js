@@ -19,7 +19,6 @@
 
   function inlineImages(el, callback) {
     //requireDomNode(el);
-    return true;
      if(typeof  el === "object"){
       Object.keys(el).map(function(objectKey, index) {
         requireDomNode(el[objectKey]);
@@ -27,7 +26,7 @@
     }else{
       requireDomNode(el);
     }
-
+el = el[0]
     var images = el.querySelectorAll('image'),
         left = images.length,
         checkDone = function() {
@@ -287,7 +286,7 @@
     var xmlns = "http://www.w3.org/2000/xmlns/";
 
     inlineImages(el, function() {
-      return true;
+      el = el[0;]
       var outer = document.createElement("div");
       var clone = el.cloneNode(true);
       var width, height;
