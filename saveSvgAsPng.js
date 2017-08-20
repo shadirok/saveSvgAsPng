@@ -265,7 +265,7 @@
 
   out$.prepareSvg = function(el, options, cb) {
     //requireDomNode(el);
-    if(Array.isArray(el)){
+    if(typeof  el === "object"){
         el.forEach(function(entry) {
         requireDomNode(entry);
       });
@@ -368,7 +368,7 @@
 
   out$.svgAsPngUri = function(el, options, cb) {
     //requireDomNode(el);
-    if(Array.isArray(el)){
+    if(typeof  el === "object"){
         el.forEach(function(entry) {
         requireDomNode(entry);
       });
@@ -489,7 +489,7 @@
 
   out$.saveSvgAsPng = function(el, name, options) {
     //requireDomNode(el);
-    if(Array.isArray(el)){
+    if(typeof  el === "object"){
         el.forEach(function(entry) {
         requireDomNode(entry);
       });
