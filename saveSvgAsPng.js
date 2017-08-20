@@ -367,6 +367,7 @@
   out$.svgAsDataUri = function(el, options, cb) {
     
     if(typeof  el === "object"){
+      console.log("svgAsDataUri -> handel object")
       var uris = []; 
       Object.keys(el).map(function(objectKey, index) {
           out$.prepareSvg(el[objectKey], options, function(svg) {
