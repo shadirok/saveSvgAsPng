@@ -446,9 +446,9 @@
     } else {
       out$.svgAsDataUri(el, options, function(uri) {
         console.log(uri)
-        console.log(uri.isArray())
-        
-        var image = new Image();
+        if(typeof  uri === "object"){
+       Object.keys(el).map(function(objectKey, index) {
+       var image = new Image();
 
         image.onload = function() {
           convertToPng(image, image.width, image.height);
@@ -463,6 +463,26 @@
         }
 
         image.src = uri;
+      });
+    }else{
+      var image = new Image();
+
+        image.onload = function() {
+          convertToPng(image, image.width, image.height);
+        }
+
+        image.onerror = function() {
+          console.error(
+            'There was an error loading the data URI as an image on the following SVG\n',
+            window.atob(uri.slice(26)), '\n',
+            "Open the following link to see browser's diagnosis\n",
+            uri);
+        }
+
+        image.src = uri;
+    }
+        
+        
       });
     }
   }
