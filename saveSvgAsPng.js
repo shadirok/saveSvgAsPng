@@ -427,6 +427,7 @@
       out$.prepareSvg(el, options, convertToPng);
     } else {
       out$.svgAsDataUri(el, options, function(uri) {
+        console.log(uri)
         var image = new Image();
 
         image.onload = function() {
