@@ -377,6 +377,9 @@
     });
       });
       console.log(uris)
+      if (cb) {
+        cb(uris);
+      }
     }else{
      
        out$.prepareSvg(el, options, function(svg) {
@@ -443,6 +446,8 @@
     } else {
       out$.svgAsDataUri(el, options, function(uri) {
         console.log(uri)
+        console.log(uri.isArray())
+        
         var image = new Image();
 
         image.onload = function() {
