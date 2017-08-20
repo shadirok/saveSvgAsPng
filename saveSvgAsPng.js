@@ -371,11 +371,11 @@
       Object.keys(el).map(function(objectKey, index) {
           out$.prepareSvg(el[objectKey], options, function(svg) {
           var uri = 'data:image/svg+xml;base64,' + window.btoa(reEncode(doctype + svg));
-          if (cb) {
-            cb(uri);
-          }
+            uris.push(uri)
+        
     });
       });
+      console.log(uris)
     }else{
      
        out$.prepareSvg(el, options, function(svg) {
