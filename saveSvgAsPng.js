@@ -266,9 +266,9 @@
   out$.prepareSvg = function(el, options, cb) {
     //requireDomNode(el);
     if(typeof  el === "object"){
-        el.forEach(function(entry) {
-        requireDomNode(entry);
-      });
+      Object.keys(el).map(function(objectKey, index) {
+        requireDomNode(el[objectKey]);
+      }); 
     }else{
       requireDomNode(el);
     }
@@ -369,8 +369,8 @@
   out$.svgAsPngUri = function(el, options, cb) {
     //requireDomNode(el);
     if(typeof  el === "object"){
-        el.forEach(function(entry) {
-        requireDomNode(entry);
+       Object.keys(el).map(function(objectKey, index) {
+        requireDomNode(el[objectKey]);
       });
     }else{
       requireDomNode(el);
@@ -490,8 +490,8 @@
   out$.saveSvgAsPng = function(el, name, options) {
     //requireDomNode(el);
     if(typeof  el === "object"){
-        el.forEach(function(entry) {
-        requireDomNode(entry);
+       Object.keys(el).map(function(objectKey, index) {
+        requireDomNode(el[objectKey]);
       });
     }else{
       requireDomNode(el);
