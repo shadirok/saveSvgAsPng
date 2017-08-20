@@ -359,13 +359,7 @@
   }
 
   out$.svgAsPngUri = function(el, options, cb) {
-     if(Array.isArray(el)){
-        el.forEach(function(entry) {
-        requireDomNode(el);
-      });
-    }else{
-      requireDomNode(el);
-    }
+    requireDomNode(el);
 
     options = options || {};
     options.encoderType = options.encoderType || 'image/png';
@@ -407,11 +401,9 @@
       out$.prepareSvg(el, options, convertToPng);
     } else {
       out$.svgAsDataUri(el, options, function(uri) {
-         if(Array.isArray(el)){
-          var image = new Image();
-         }else{
-            var image = new Image();
-            image.onload = function() {
+        var image = new Image();
+
+        image.onload = function() {
           convertToPng(image, image.width, image.height);
         }
 
@@ -424,7 +416,6 @@
         }
 
         image.src = uri;
-         }
       });
     }
   }
@@ -482,13 +473,7 @@
   }
 
   out$.saveSvgAsPng = function(el, name, options) {
-    if(Array.isArray(el)){
-        el.forEach(function(entry) {
-        requireDomNode(el);
-      });
-    }else{
-      requireDomNode(el);
-    }
+    requireDomNode(el);
 
     options = options || {};
     out$.svgAsPngUri(el, options, function(uri) {
