@@ -409,7 +409,8 @@
     options.encoderType = options.encoderType || 'image/png';
     options.encoderOptions = options.encoderOptions || 0.8;
 
-    var convertToPng = function(src, w, h) {
+    var convertToPng = function(canvas) {
+      /*
       var canvas = document.createElement('canvas');
       var context = canvas.getContext('2d');
       canvas.width = w;
@@ -426,7 +427,7 @@
         context.fillStyle = options.backgroundColor;
         context.fillRect(0, 0, canvas.width, canvas.height);
       }
-
+*/
       var png;
       try {
         png = canvas.toDataURL(options.encoderType, options.encoderOptions);
@@ -447,11 +448,19 @@
       out$.svgAsDataUri(el, options, function(uri) {
         console.log(uri)
         if(typeof  uri === "object"){
+            
+          var canvas = document.createElement('canvas');
+              var context = canvas.getContext('2d');
+              canvas.width = w;
+              canvas.height = h;
+          
+    
        Object.keys(uri).map(function(objectKey, index) {
        var image = new Image();
 
         image.onload = function() {
-          convertToPng(image, image.width, image.height);
+          //convertToPng(image, image.width, image.height);
+          context.drawImage(image, 0, 0);
         }
 
         image.onerror = function() {
@@ -464,6 +473,7 @@
 
         image.src = uri[objectKey];
       });
+          convertToPng(canvas);
     }else{
       var image = new Image();
 
