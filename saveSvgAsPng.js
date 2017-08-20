@@ -18,7 +18,15 @@
   }
 
   function inlineImages(el, callback) {
-    requireDomNode(el);
+    //requireDomNode(el);
+    return true;
+     if(typeof  el === "object"){
+      Object.keys(el).map(function(objectKey, index) {
+        requireDomNode(el[objectKey]);
+      }); 
+    }else{
+      requireDomNode(el);
+    }
 
     var images = el.querySelectorAll('image'),
         left = images.length,
@@ -278,7 +286,8 @@
     options.responsive = options.responsive || false;
     var xmlns = "http://www.w3.org/2000/xmlns/";
 
-    inlineImages(el[0], function() {
+    inlineImages(el, function() {
+      return true;
       var outer = document.createElement("div");
       var clone = el.cloneNode(true);
       var width, height;
