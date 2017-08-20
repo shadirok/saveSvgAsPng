@@ -447,7 +447,7 @@
       out$.svgAsDataUri(el, options, function(uri) {
         console.log(uri)
         if(typeof  uri === "object"){
-       Object.keys(el).map(function(objectKey, index) {
+       Object.keys(uri).map(function(objectKey, index) {
        var image = new Image();
 
         image.onload = function() {
@@ -459,10 +459,10 @@
             'There was an error loading the data URI as an image on the following SVG\n',
             window.atob(uri.slice(26)), '\n',
             "Open the following link to see browser's diagnosis\n",
-            uri);
+            uri[objectKey]);
         }
 
-        image.src = uri;
+        image.src = uri[objectKey];
       });
     }else{
       var image = new Image();
