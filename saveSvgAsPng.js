@@ -365,16 +365,30 @@
   }
 
   out$.svgAsDataUri = function(el, options, cb) {
-    Object.keys(el).map(function(objectKey, index) {
-        //requireDomNode(el[objectKey]);
-        out$.prepareSvg(el[objectKey], options, function(svg) {
+    
+    if(typeof  el === "object"){
+      var uris = []; 
+      Object.keys(el).map(function(objectKey, index) {
+          out$.prepareSvg(el[objectKey], options, function(svg) {
+          var uri = 'data:image/svg+xml;base64,' + window.btoa(reEncode(doctype + svg));
+          if (cb) {
+            cb(uri);
+          }
+    });
+      });
+    }else{
+     
+       out$.prepareSvg(el, options, function(svg) {
+      console.log(svg)
       var uri = 'data:image/svg+xml;base64,' + window.btoa(reEncode(doctype + svg));
       if (cb) {
         cb(uri);
       }
     });
-      });
+    }
   
+   
+ 
   }
 
   out$.svgAsPngUri = function(el, options, cb) {
