@@ -264,14 +264,21 @@
   }
 
   out$.prepareSvg = function(el, options, cb) {
-    requireDomNode(el);
+    //requireDomNode(el);
+    if(Array.isArray(el)){
+        el.forEach(function(entry) {
+        requireDomNode(entry);
+      });
+    }else{
+      requireDomNode(el);
+    }
 
     options = options || {};
     options.scale = options.scale || 1;
     options.responsive = options.responsive || false;
     var xmlns = "http://www.w3.org/2000/xmlns/";
 
-    inlineImages(el, function() {
+    inlineImages(el[0], function() {
       var outer = document.createElement("div");
       var clone = el.cloneNode(true);
       var width, height;
@@ -351,6 +358,7 @@
 
   out$.svgAsDataUri = function(el, options, cb) {
     out$.prepareSvg(el, options, function(svg) {
+      console.log(svg)
       var uri = 'data:image/svg+xml;base64,' + window.btoa(reEncode(doctype + svg));
       if (cb) {
         cb(uri);
@@ -359,7 +367,14 @@
   }
 
   out$.svgAsPngUri = function(el, options, cb) {
-    requireDomNode(el);
+    //requireDomNode(el);
+    if(Array.isArray(el)){
+        el.forEach(function(entry) {
+        requireDomNode(entry);
+      });
+    }else{
+      requireDomNode(el);
+    }
 
     options = options || {};
     options.encoderType = options.encoderType || 'image/png';
