@@ -26,7 +26,7 @@
     }else{
       requireDomNode(el);
     }
-el = el[0]
+//el = el[0]
     var images = el.querySelectorAll('image'),
         left = images.length,
         checkDone = function() {
@@ -286,7 +286,7 @@ el = el[0]
     var xmlns = "http://www.w3.org/2000/xmlns/";
 
     inlineImages(el, function() {
-      el = el[0]
+      //el = el[0]
       var outer = document.createElement("div");
       var clone = el.cloneNode(true);
       var width, height;
@@ -365,13 +365,16 @@ el = el[0]
   }
 
   out$.svgAsDataUri = function(el, options, cb) {
-    out$.prepareSvg(el, options, function(svg) {
-      console.log(svg)
+    Object.keys(el).map(function(objectKey, index) {
+        //requireDomNode(el[objectKey]);
+        out$.prepareSvg(el[objectKey], options, function(svg) {
       var uri = 'data:image/svg+xml;base64,' + window.btoa(reEncode(doctype + svg));
       if (cb) {
         cb(uri);
       }
     });
+      });
+  
   }
 
   out$.svgAsPngUri = function(el, options, cb) {
